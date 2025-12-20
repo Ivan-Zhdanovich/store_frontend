@@ -3,14 +3,67 @@
  */
 Ext.define('storeApp.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
+    requires: [
+        'storeApp.data.proxy.CategoryProxy',
+        'storeApp.data.proxy.NestProxy'
+    ],
 
-    alias: 'viewmodel.main',
+    alias: 'viewmodel.main',   
 
     data: {
-        name: 'storeApp',
+        mainTitle: 'Каталог Motexc'
+    },
 
-        loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    stores: {
+        categoryStore: {
+         type: 'tree',
+    proxy: {
+        type: 'categoryproxy',
+        url: 'http://localhost:3000/api/categories',
+        appendId: true,
+        reader: {
+            type: 'json',
+            rootProperty: 'data'
+        }
+    },
+    root: {
+        text: 'Все категории',
+          id: null,      
+          expanded: true,
+          loaded: true  
     }
+        },
 
-    //TODO - add data, formulas and/or methods to support your view
+        suppliersStore: {
+            type: 'store',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'http://localhost:3000/api/suppliers',
+                reader: { type: 'json' }
+            }
+        },
+
+        partsStore: {
+            model: 'storeApp.model.Part',
+            pageSize: 25,
+            autoLoad: true,
+            // remoteSort: true,
+            remoteFilter: true,
+            proxy: {
+                type: 'nestproxy',
+                url: 'http://localhost:3000/api/parts',
+                reader: {
+                     type: 'json',
+                     rootProperty: 'items',        
+                    totalProperty: 'meta.totalItems'
+                },
+                // sortParam: 'sort',
+                //     encodeSorters: function(sorters) {
+                //     var sorter = sorters[0];
+                //     return (sorter.getDirection() === 'DESC' ? '-' : '+') + sorter.getProperty();
+                // }
+            }
+        }
+    }
 });

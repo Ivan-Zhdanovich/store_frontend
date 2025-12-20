@@ -1,12 +1,24 @@
 Ext.define('storeApp.view.main.Main', {
     extend: 'Ext.navigation.View',
     xtype: 'app-main',
+
+     requires: [
+        'storeApp.view.main.MainController',
+        'storeApp.view.main.MainModel',
+        'storeApp.view.parts.PartsGrid'
+    ],
+    
     controller: 'main',
     viewModel: 'main',
 
+    fullscreen: true, 
+
     navigationBar: {
-        title: 'Каталог Motexc',
-        items: [{
+         bind: {
+            title: '{mainTitle}'
+        },
+    
+    items: [{
             xtype: 'button',
             text: 'Добавить',
             align: 'right',
@@ -17,6 +29,7 @@ Ext.define('storeApp.view.main.Main', {
     items: [{
         xtype: 'panel',
         layout: 'hbox',
+        flex: 1,
         items: [
             {
                 xtype: 'treelist',
@@ -28,7 +41,7 @@ Ext.define('storeApp.view.main.Main', {
                 listeners: { selectionchange: 'onCategorySelect' }
             },
             {
-                xtype: 'container',
+                xtype: 'panel',
                 flex: 1,
                 layout: 'fit',
                 items: [
