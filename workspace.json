@@ -41,6 +41,10 @@
         "dir": "${workspace.dir}/build"
     },
 
+    "proxy": {
+    "url": "http://localhost:3000"
+    },
+
     /**
      * These configs determine where packages are generated and extracted to (when downloaded).
      */

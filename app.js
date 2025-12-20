@@ -12,6 +12,9 @@ Ext.application({
         // so that application classes do not need to require each other.
         'storeApp.*'
     ],
+//     launch: function() {
+//     Ext.state.Provider.register(new Ext.state.LocalStorageProvider());
+// },
 
     // The name of the initial view to create.
     mainView: 'storeApp.view.main.Main'
