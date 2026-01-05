@@ -3,25 +3,27 @@
  * calls Ext.application(). This is the ideal place to handle application launch and
  * initialization details.
  */
-Ext.define('storeApp.Application', {
-    extend: 'Ext.app.Application',
+Ext.define("storeApp.Application", {
+  extend: "Ext.app.Application",
 
-    name: 'storeApp',
+  name: "storeApp",
 
-    quickTips: false,
-    platformConfig: {
-        desktop: {
-            quickTips: true
-        }
+  quickTips: false,
+  platformConfig: {
+    desktop: {
+      quickTips: true,
     },
+  },
 
-    onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
-    }
+  onAppUpdate: function () {
+    Ext.Msg.confirm(
+      "Application Update",
+      "This application has an update, reload?",
+      function (choice) {
+        if (choice === "yes") {
+          window.location.reload();
+        }
+      },
+    );
+  },
 });

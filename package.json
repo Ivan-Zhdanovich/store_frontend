@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:inspect": "eslint --inspect-config",
+    "format": "prettier --write \"**/*.{js,json,css,scss}\"",
+    "fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "@sencha/eslint-plugin-extjs": "^7.9.0"
+  }
+}

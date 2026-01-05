@@ -1,0 +1,11 @@
+**/node_modules/**
+**/build/**
+**/ext/**
+**/resources/**
+
+node_modules
+ext
+build
+storeApp-client/ext
+storeApp-client/build
+storeApp-client/resources/
